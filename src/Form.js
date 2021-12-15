@@ -8,6 +8,7 @@ function Form() {
   })
 
   const [submitted, setSubmitted] = React.useState(false);
+  const [valid, setValid] = React.useState(false);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -21,6 +22,9 @@ function Form() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    if (values.firstName && values.lastName && values.email) {
+      setValid(true);
+    }
     setSubmitted(true);
   }
 
@@ -28,7 +32,7 @@ function Form() {
     <div className="form-container">
       <form className="register-form" onSubmit={handleSubmit}>
 
-        {submitted && <div className="success-message">Success! Thank you for registering</div>}
+        {submitted && valid && <div className="success-message" >Success! Thank you for registering</div>}
 
         <input
           id="first-name"
